@@ -16,10 +16,45 @@
         }
         h1 {
             color: #555;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>The app is starting up. Please wait...</h1>
+    <h1>The app is starting up.<br>Please wait...</h1>
+
+    <script>
+        // URL of the Start EC2 API
+        const apiStartUrl = 'https://oa3xcb6ftg.execute-api.us-east-1.amazonaws.com/start';
+        // URL of the Shiny app
+        const shinyAppUrl = 'http://appraise.mindsoff.com:3838/app';
+
+        // Function to call the API to start the EC2 instance
+        async function startEC2Instance() {
+            try {
+                const response = await fetch(apiStartUrl, {
+                    method: 'GET'
+                });
+
+                if (response.ok) {
+                    console.log('EC2 instance is starting...');
+                    // Redirect to the Shiny app after a delay
+                    setTimeout(() => {
+                        window.location.href = shinyAppUrl;
+                    }, 60000); // Adjust delay time as needed (e.g., 60 seconds)
+                } else {
+                    console.error('Error starting EC2:', response.statusText);
+                    alert('Failed to start the app. Please try again later.');
+                }
+            } catch (error) {
+                console.error('Error calling API:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        }
+
+        // Trigger the function when the page loads
+        startEC2Instance();
+    </script>
 </body>
 </html>
+
