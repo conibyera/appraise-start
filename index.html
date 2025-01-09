@@ -44,7 +44,7 @@
         async function startInstance() {
             try {
                 const startResponse = await fetch('https://oa3xcb6ftg.execute-api.us-east-1.amazonaws.com/start', {
-                    method: 'POST'
+                    method: 'GET'
                 });
                 if (!startResponse.ok) {
                     throw new Error('Failed to start instance');
@@ -59,6 +59,6 @@
     </script>
 </head>
 <body>
-    <h1>Checking the app status. <br>Please wait...</br></h1>
+    <h4>Checking the app status <br>Please wait...</br></h4>
 </body>
 </html>
