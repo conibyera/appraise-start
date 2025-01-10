@@ -29,10 +29,10 @@
                 const data = await response.json();
                 console.log('Instance status:', data);
 
-                if (data.state === 'running') {
+                if (data.instanceState === 'running') {
                     console.log('Instance is running. Redirecting...');
-                    window.location.href = 'appraise.mindsoff.com:3838/app';
-                } else if (data.state === 'stopped') {
+                    window.location.href = 'http://appraise.mindsoff.com:3838/app';
+                } else if (data.instanceState === 'stopped') {
                     console.log('Instance is stopped. Starting instance...');
                     await startInstance();
                     setTimeout(checkStatus, 5000); // Check status again after 5 seconds
@@ -63,6 +63,7 @@
     </script>
 </head>
 <body>
-    <h1>Checking the app status <br> Please wait...</br></h1>
+    <h1>Checking the app status. Please wait...</h1>
 </body>
 </html>
+
