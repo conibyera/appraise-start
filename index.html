@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launching App</title>
+    <title>Checking Status</title>
     <style>
         body {
             display: flex;
@@ -19,24 +19,6 @@
         }
     </style>
     <script>
-        async function checkAppReadiness() {
-            const appURL = 'http://appraise.mindsoff.com:3838/app';
-            try {
-                console.log('Checking if the Shiny app is ready...');
-                const response = await fetch(appURL, { method: 'HEAD' });
-                if (response.ok) {
-                    console.log('App is ready. Redirecting...');
-                    window.location.href = appURL;
-                } else {
-                    console.log('App is not ready yet. Retrying...');
-                    setTimeout(checkAppReadiness, 5000); // Retry every 5 seconds
-                }
-            } catch (error) {
-                console.error('Error checking app readiness:', error);
-                setTimeout(checkAppReadiness, 5000); // Retry on error
-            }
-        }
-
         async function checkStatus() {
             try {
                 console.log('Checking instance status...');
@@ -48,8 +30,8 @@
                 console.log('Instance status:', data);
 
                 if (data.instanceState === 'running') {
-                    console.log('Instance is running. Checking app readiness...');
-                    checkAppReadiness();
+                    console.log('Instance is running. Redirecting...');
+                    window.location.href = 'http://appraise.mindsoff.com:3838/app';
                 } else if (data.instanceState === 'stopped') {
                     console.log('Instance is stopped. Starting instance...');
                     await startInstance();
@@ -60,7 +42,7 @@
                 }
             } catch (error) {
                 console.error('Error checking status:', error);
-                setTimeout(checkStatus, 5000); // Retry on error
+                setTimeout(checkStatus, 5000); // Retry after 5 seconds
             }
         }
 
@@ -81,8 +63,6 @@
     </script>
 </head>
 <body>
-    <h3>Launching the app. Please wait...</h3>
+    <h3>Checking the app status. Please wait...</h3>
 </body>
 </html>
-
-
