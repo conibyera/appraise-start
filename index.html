@@ -20,7 +20,7 @@
     </style>
     <script>
         async function checkAppReadiness() {
-            const appURL = 'http://appraise.mindsoff.com:3838/app';
+            const appURL = 'https://appraise.mindsoff.com/app';
             try {
                 console.log('Checking if the Shiny app is ready...');
                 const response = await fetch(appURL, { method: 'HEAD' });
