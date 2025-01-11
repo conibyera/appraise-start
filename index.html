@@ -26,7 +26,7 @@
                 const response = await fetch(appURL, { method: 'HEAD', mode: 'cors' });
                 if (response.ok) {
                     console.log('App is ready. Redirecting...');
-                    window.location.replace() = appURL;
+                    window.location.href = appURL;
                 } else {
                     console.log('App is not ready yet. Retrying...');
                     setTimeout(checkAppReadiness, 5000); // Retry every 5 seconds
