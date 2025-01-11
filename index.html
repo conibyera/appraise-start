@@ -23,7 +23,7 @@
             const appURL = 'https://appraise.mindsoff.com/app';
             try {
                 console.log('Checking if the Shiny app is ready...');
-                const response = await fetch(appURL, { method: 'HEAD', , mode: 'cors' });
+                const response = await fetch(appURL, { method: 'HEAD', mode: 'cors' });
                 if (response.ok) {
                     console.log('App is ready. Redirecting...');
                     window.location.replace() = appURL;
