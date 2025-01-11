@@ -23,7 +23,7 @@
             const appURL = 'https://x6192t9yg2.execute-api.us-east-1.amazonaws.com/app';
             try {
                 console.log('Checking if the Shiny app is ready...');
-                const response = await fetch(appURL, { method: 'HEAD'});
+                const response = await fetch(appURL, { method: 'HEAD',  mode: 'no-cors'});
                 if (response.ok) {
                     console.log('App is ready. Redirecting...');
                     window.location.href = appURL;
