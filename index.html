@@ -20,10 +20,10 @@
     </style>
     <script>
         async function checkAppReadiness() {
-            const appURL = 'https://appraise.mindsoff.com/app';
+            const appURL = 'https://x6192t9yg2.execute-api.us-east-1.amazonaws.com/app';
             try {
                 console.log('Checking if the Shiny app is ready...');
-                const response = await fetch(appURL, { method: 'HEAD', mode: 'cors' });
+                const response = await fetch(appURL, { method: 'HEAD'});
                 if (response.ok) {
                     console.log('App is ready. Redirecting...');
                     window.location.href = appURL;
