@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Unavailable</title>
+    <title>App Sleeping</title>
     <style>
         /* General styling */
         body {
@@ -81,7 +81,7 @@
                 method: "GET",
             });
             if (response.ok) {
-                alert("The server is starting. Please wait a few minutes.");
+                alert("The server is starting. Please wait a few seconds.");
                 // Redirect the user to the app once the server is starting
                 window.location.href = "http://appraise.mindsoff.com:3838/app";
             } else {
