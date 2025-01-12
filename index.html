@@ -72,7 +72,7 @@
 <body>
     <div class="emoji">😴</div>
     <h1>App Sleeping</h1>
-    <p>The application server is currently offline. click the button beloe to restart it</p>
+    <p>The application server is currently offline. click the button below to restart it</p>
     <button onclick="startInstance()">Start Server</button>
 
     <script>
@@ -83,7 +83,7 @@
             if (response.ok) {
                 alert("The server is starting. Please wait a few minutes.");
                 // Redirect the user to the app once the server is starting
-                window.location.href = "http://appraise.mindsoff.com/app";
+                window.location.href = "http://appraise.mindsoff.com:3838/app";
             } else {
                 alert("Failed to start the server. Please try again later.");
             }
