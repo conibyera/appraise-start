@@ -3,84 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Launching App</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-        }
-        h1 {
-            color: #555;
-        }
-    </style>
+    <title>App Unavailable</title>
     <script>
-        async function checkAppReadiness() {
-            const appURL = 'https://x6192t9yg2.execute-api.us-east-1.amazonaws.com/app';
-            try {
-                console.log('Checking if the Shiny app is ready...');
-                const response = await fetch(appURL, { method: 'HEAD',  mode: 'no-cors'});
-                if (response.ok) {
-                    console.log('App is ready. Redirecting...');
-                    window.location.href = appURL;
-                } else {
-                    console.log('App is not ready yet. Retrying...');
-                    setTimeout(checkAppReadiness, 5000); // Retry every 5 seconds
-                }
-            } catch (error) {
-                console.error('Error checking app readiness:', error);
-                setTimeout(checkAppReadiness, 5000); // Retry on error
-            }
-        }
-
-        async function checkStatus() {
-            try {
-                console.log('Checking instance status...');
-                const response = await fetch('https://oa3xcb6ftg.execute-api.us-east-1.amazonaws.com/status');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch instance status');
-                }
-                const data = await response.json();
-                console.log('Instance status:', data);
-
-                if (data.instanceState === 'running') {
-                    console.log('Instance is running. Checking app readiness...');
-                    checkAppReadiness();
-                } else if (data.instanceState === 'stopped') {
-                    console.log('Instance is stopped. Starting instance...');
-                    await startInstance();
-                    setTimeout(checkStatus, 5000); // Check status again after 5 seconds
-                } else {
-                    console.log('Instance is in a pending state. Retrying...');
-                    setTimeout(checkStatus, 5000); // Retry after 5 seconds
-                }
-            } catch (error) {
-                console.error('Error checking status:', error);
-                setTimeout(checkStatus, 5000); // Retry on error
-            }
-        }
-
         async function startInstance() {
-            try {
-                console.log('Sending request to start instance...');
-                const response = await fetch('https://oa3xcb6ftg.execute-api.us-east-1.amazonaws.com/start', { method: 'GET' });
-                if (!response.ok) {
-                    throw new Error('Failed to start instance');
-                }
-                console.log('Instance start request sent successfully');
-            } catch (error) {
-                console.error('Error starting instance:', error);
+            const response = await fetch("https://oa3xcb6ftg.execute-api.us-east-1.amazonaws.com/start", {
+                method: "GET",
+            });
+            if (response.ok) {
+                alert("The server is starting. Please wait a few minutes.");
+                // Redirect the user to the app once the server is starting
+                window.location.href = "http://appraise.mindsoff.com:3838/app";
+            } else {
+                alert("Failed to start the server. Please try again later.");
             }
         }
-
-        document.addEventListener('DOMContentLoaded', checkStatus);
     </script>
 </head>
 <body>
-    <h3>Launching the app <br> Please wait...</br></h3>
+    <h1>App Unavailable</h1>
+    <p>The application server is currently offline.</p>
+    <button onclick="startInstance()">Start Server</button>
 </body>
 </html>
