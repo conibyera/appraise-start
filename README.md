@@ -1,1 +1,1 @@
-This is a placeholder website for starting an app
+This is a placeholder website for starting the server that host the AppRaise app. Once a user clicks on a "Start Server" button, the server will start, and they will be directed to the app website at https://appraise.mindsoff.com/app.
