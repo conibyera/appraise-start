@@ -1,95 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="google-site-verification" content="-emELI190hT71AZrjUy7oNMzLt_QuucvAayeMIjRF9U" />
-    <title>App Sleeping</title>
-    <style>
-        /* General styling */
-        body {
-            font-family: 'Arial', sans-serif;
-            text-align: center;
-            background-color: #f0f8ff;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
-
-        h1 {
-            font-size: 3em;
-            color: #4CAF50;
-        }
-
-        p {
-            font-size: 1.5em;
-            color: #555;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
-        }
-
-        button:active {
-            background-color: #45a049;
-        }
-
-        /* Fade-in effect for the body */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Emoji animation */
-        .emoji {
-            font-size: 5em;
-            animation: sleepAnimation 2s infinite;
-        }
-
-        @keyframes sleepAnimation {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(5deg); }
-            50% { transform: rotate(-5deg); }
-            75% { transform: rotate(3deg); }
-            100% { transform: rotate(0deg); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="-emELI190hT71AZrjUy7oNMzLt_QuucvAayeMIjRF9U" />
+<title>AppRaise — Quantifying Uncertainty in Systematic Reviews</title>
+<meta name="description" content="AppRaise is a free, web-based tool that quantifies evidence uncertainty in systematic reviews using a Bayesian mixture model, combining random error and study bias into a single probability of benefit.">
+<style>
+  :root{
+    --ink:#1b2430; --ink-soft:#525c68; --bg:#f7f8fa; --card:#ffffff;
+    --accent:#2c5f8a; --line:#dfe3e8;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;}
+  .wrap{max-width:800px;margin:0 auto;padding:0 24px;}
+  header{padding:56px 0 28px;text-align:center;}
+  header h1{font-size:2.3rem;margin:0 0 10px;}
+  header p.tagline{color:var(--ink-soft);font-size:1.15rem;max-width:60ch;margin:0 auto;}
+  section{padding:30px 0;border-top:1px solid var(--line);}
+  h2{font-size:1.3rem;margin:0 0 14px;}
+  p{margin:0 0 14px;}
+  ul{margin:0 0 14px;padding-left:20px;}
+  li{margin-bottom:8px;}
+  .launch-box{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:26px;text-align:center;}
+  .launch-box p{color:var(--ink-soft);font-size:.95rem;}
+  button{background:var(--accent);color:#fff;border:none;padding:14px 30px;font-size:1.05rem;border-radius:4px;cursor:pointer;}
+  button:hover{opacity:.9;}
+  footer{padding:26px 0 50px;color:var(--ink-soft);font-size:.9rem;}
+  footer a{color:var(--accent);}
+  code{background:#eef0f2;padding:1px 5px;border-radius:3px;font-size:.9em;}
+</style>
 </head>
 <body>
-    <div class="emoji">😴</div>
-    <h1>App Sleeping</h1>
-    <p>The application server is currently offline. click the button below to restart it. <br>Refresh the app page if you get a 502 error.</br></p>
-    <button onclick="startInstance()">Start Server</button>
 
-    <script>
-        async function startInstance() {
-            const response = await fetch("https://oa3xcb6ftg.execute-api.us-east-1.amazonaws.com/start", {
-                method: "GET",
-            });
-            if (response.ok) {
-                alert("The server is starting. Please wait a few seconds.");
-                // Redirect the user to the app once the server is starting
-                window.location.href = "https://appraise.mindsoff.com/app";
-            } else {
-                alert("Failed to start the server. Please try again later.");
-            }
-        }
-    </script>
+<header class="wrap">
+  <h1>AppRaise</h1>
+  <p class="tagline">A free, web-based tool for quantifying evidence uncertainty in systematic reviews using a Bayesian mixture model.</p>
+</header>
+
+<section class="wrap">
+  <h2>What it does</h2>
+  <p>Systematic reviews usually quantify random error well but describe study bias only in narrative terms, since primary studies rarely report bias as a number. AppRaise closes that gap: it lets reviewers express both random error and bias as probability distributions, then combines them across studies into a single posterior probability that a treatment effect exceeds a threshold the reviewer defines as clinically meaningful.</p>
+  <p>Rather than reporting an effect size with a confidence interval, AppRaise reports something decision-makers can act on directly: the probability that a treatment is beneficial, given the evidence and its known limitations.</p>
+</section>
+
+<section class="wrap">
+  <h2>Key features</h2>
+  <ul>
+    <li><strong>Five bias types</strong> — confounding, selection bias, measurement error, model misspecification, and other bias, each modeled per study.</li>
+    <li><strong>Five prior distribution families</strong> — Beta, Skew Normal, Laplace, Exponential, and Negative Exponential, so the shape of each bias can be tailored to the evidence.</li>
+    <li><strong>Works with any effect measure</strong> — risk ratios, hazard ratios, odds ratios, mean differences, proportions, and more.</li>
+    <li><strong>Study-specific weighting</strong> — reviewers can down-weight studies with more uncertain bias assumptions rather than treating all evidence as equally trustworthy.</li>
+    <li><strong>Built on Stan/NUTS</strong> — samples the posterior using the No-U-Turn Sampler, pre-compiled so results typically return in a few seconds.</li>
+  </ul>
+</section>
+
+<section class="wrap">
+  <h2>Validated against a real health technology assessment</h2>
+  <p>Applied to an Ontario HTA on continuous glucose monitoring for type 1 diabetes, AppRaise produced an 86% posterior probability that continuous monitoring meaningfully reduces A1c compared with fingerstick testing — closely matching results from other established bias-adjustment methods, and offering a more decision-ready answer than the HTA's original qualitative GRADE rating of "moderate confidence."</p>
+</section>
+
+<section class="wrap">
+  <h2>Who it's for</h2>
+  <p>Systematic reviewers, health technology assessment analysts, and evidence appraisers who want a quantitative, reproducible alternative — or complement — to qualitative bias scoring, without needing to write statistical code themselves.</p>
+</section>
+
+<section class="wrap">
+  <div class="launch-box">
+    <h2 style="margin-top:0;">Launch AppRaise</h2>
+    <p>The app runs on demand, so the server may take a few seconds to wake up on first load. If you see a 502 error right after launching, just refresh the app page.</p>
+    <button onclick="startInstance()">Start Server</button>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p>Developed by Conrad Kabali, Ontario Health &amp; University of Toronto. Source code is available on <a href="https://github.com/conibyera/AppRaise" target="_blank" rel="noopener">GitHub</a>. Bias-distribution shapes can be previewed interactively at the companion <a href="https://kabali.shinyapps.io/Distributions/" target="_blank" rel="noopener">Distributions tool</a>.</p>
+  <p>Questions: <a href="mailto:conrad.kabali@utoronto.ca">conrad.kabali@utoronto.ca</a></p>
+</footer>
+
+<script>
+  async function startInstance() {
+    const response = await fetch("https://oa3xcb6ftg.execute-api.us-east-1.amazonaws.com/start", {
+      method: "GET",
+    });
+    if (response.ok) {
+      alert("The server is starting. Please wait a few seconds.");
+      window.location.href = "https://appraise.mindsoff.com/app";
+    } else {
+      alert("Failed to start the server. Please try again later.");
+    }
+  }
+</script>
+
 </body>
 </html>
-
